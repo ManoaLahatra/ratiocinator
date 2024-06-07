@@ -41,4 +41,17 @@ public class CalculusRatiocinatorTest
 
         assertEquals(louEstPauvreDoncLouEstGenereux, "je-ne-sais-pas");
     }
+
+    @Test
+    public void louEstBeauOuLouEstGenereuxDoncLouEstPauvre()
+    {
+        Affirmation louEstBeau = new Verite("Lou est beau");
+        Affirmation louEstGenereux = new Doute("Lou est généreux");
+        Affirmation louEstPauvre = new Mensonge("Lou est pauvre");
+
+        Affirmation louEstBeauOuLouEstGenereux = new Ou("Lou est beau ou lou est généreux", louEstBeau, louEstGenereux);
+        String louEstBeauOuLouEstGenereuxDoncLouEstPauvre = new Donc("Lou est beau ou Lou est généreux. Donc Lou est pauvre.", louEstBeauOuLouEstGenereux, louEstPauvre).estVraie();
+
+        assertEquals(louEstBeauOuLouEstGenereuxDoncLouEstPauvre, "faux");
+    }
 }
